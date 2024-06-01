@@ -4,7 +4,7 @@ con = sqlite3.connect("contacts.db")
 
 cur = con.cursor()
 
-cur.execute("CREATE TABLE contacts(forename text, surname text, address text, phone text, email text)")
+#cur.execute("CREATE TABLE contacts(forename text, surname text, address text, phone text, email text)")
 
 def create_contact(contact):
 
@@ -78,5 +78,3 @@ def remove_contact(contact):
 		cur.execute("DELETE FROM contacts WHERE forename = :forename AND surname = :surname", 
 			{"forename": contact.forename, "surname": contact.surname})
 
-
-con.close()
