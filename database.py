@@ -37,6 +37,13 @@ def view_contact_information(contact):
 	return cur.fetchall()
 
 
+def all_contact_information():
+
+	cur.execute("SELECT * FROM contacts")
+
+	return cur.fetchall()
+
+
 def remove_contact(contact):
 
 	"""
@@ -50,6 +57,7 @@ def remove_contact(contact):
 
 		cur.execute("DELETE FROM contacts WHERE forename = :forename AND surname = :surname", 
 			{"forename": contact.forename, "surname": contact.surname})
+
 
 
 #con.close()
