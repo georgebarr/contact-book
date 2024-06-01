@@ -1,18 +1,15 @@
 import os
-from database import create_contact, view_contact_information, remove_contact
+from database import create_contact, view_contact_information, remove_contact, all_contact_information
 from classes import Contact
 
-CLEAR = ('cls' if os.name == 'nt' else 'clear')
 
 print("Welcome to your contact book.")
 
-user_input = input("Would you like to (C)reate a contact, (V)iew the information of a specific contact or (R)emove a contact?: ").lower().strip()
+user_input = input("Would you like to (C)reate a contact, (V)iew the information of a specific contact, (Vi)ew all contacts, or (R)emove a contact?: ").lower().strip()
 
-os.system(CLEAR)
+os.system('cls' if os.name == 'nt' else 'clear')
 
-
-if user_input in ["c", "v", "r"]:
-
+if user_input == "c": 
 
 	forename = input("The contact's forename: ")
 	surname = input("The contact's surname: ")
@@ -22,31 +19,42 @@ if user_input in ["c", "v", "r"]:
 
 	contact = Contact(forename, surname, address, phone_num, email)
 
-	if user_input == "c": 
+	create_contact(contact)
 
-		create_contact(contact)
+	print("{} has been added to your contact book!".format(forename + " " + surname)) 
 
-		print("{} has been added to your contact book!".format(forename + " " + surname)) 
+elif user_input == "vi":
 
-	elif user_input == "v":
+	for i in all_contact_information(): print(i)
 
-		if view_contact_information(contact) == []:
+elif user_input == "v":
 
-			print("This user is not in your contacts.")
+	surname = input("The contact's surname: ")
 
-		else: 
+	contact = Contact("", surname, "", "", "")
 
-			print(view_contact_information(contact))
+	if view_contact_information(contact) == []:
 
-	elif user_input == "r":
+		print("This user is not in your contacts.")
 
-		remove_contact(contact)
+	else: 
 
-		print("Contact deleted.")
+		for i in view_contact_information(contact): print(i)
+
+elif user_input == "r":
+
+	forename = input("The contact's forename: ")
+	surname = input("The contact's surname: ")
+
+	contact = Contact(forename, surname, "", "", "")
+
+	remove_contact(contact)
+
+	print("Contact deleted.")
 
 else:
 
 	print("Invalid input. Relaunch program.")
 
-	raise SystemExit() 
 
+raise SystemExit()
