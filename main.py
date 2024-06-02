@@ -18,7 +18,7 @@ if user_input == "c":
 	phone_num = input("The contact's phone number: ")
 	email = input("The contact's email: ")
 
-	# Saves the new information as an object of the Contact class.
+	# Saves the new contact as an object of the Contact class.
 	contact = Contact(forename, surname, address, phone_num, email)
 
 	# Adds the new contact to the database.
