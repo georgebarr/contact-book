@@ -25,7 +25,14 @@ if user_input == "c":
 
 elif user_input == "vi":
 
-	for i in all_contact_information(): print(i)
+	if all_contact_information() != []:
+
+		for i in all_contact_information(): 
+			print(i)
+
+	else:
+
+		print("You currently have no contacts!")
 
 elif user_input == "v":
 
